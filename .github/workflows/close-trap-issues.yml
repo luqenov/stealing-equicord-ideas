@@ -22,7 +22,7 @@ jobs:
             await github.rest.issues.createComment({
               ...context.repo,
               issue_number: context.issue.number,
-              body: "This issue was automatically closed because you checked the box saying you didn't read the template. Please read it carefully, and if you still need help, join our Discord: https://equicord.org/discord"
+              body: "This issue was automatically closed because you checked the box saying you didn't read the template. Please read it carefully, and if you still need help, join our [Discord server](https://equicord.org/discord)"
             });
 
             await github.rest.issues.addLabels({
