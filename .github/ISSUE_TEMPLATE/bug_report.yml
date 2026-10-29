@@ -1,0 +1,83 @@
+name: Bug/Crash Report
+description: Create a bug or crash report for the Equicord Installer (Equilotl).
+labels: [BUG]
+title: "[BUG] <title>"
+
+body:
+    - type: markdown
+      attributes:
+          value: |
+              It is preferable to join our [official Discord server](https://equicord.org/discord) and get support there instead of opening an issue!
+
+              **Windows users:** Do **not** run the installer as Administrator. If the graphical installer fails to open, download the CLI build instead. Run the file and follow the instructions provided in the terminal window to install Equicord.
+
+              If you are experiencing any of the following issues, go to our Discord server for support:
+              - You are having issues installing Equicord
+              - You want to ask a question about the installer or Equicord
+
+    - type: textarea
+      id: bug-description
+      attributes:
+          label: What happens when the bug or crash occurs?
+          description: Where does this bug or crash occur, when does it occur, etc.
+          placeholder: The bug/crash happens sometimes when I do ..., causing the installer to not work/crash. I think it happens because of ...
+      validations:
+          required: true
+
+    - type: textarea
+      id: expected-behaviour
+      attributes:
+          label: What is the expected behaviour?
+          description: Simply detail what the expected behaviour is.
+          placeholder: I expect the installer to ... instead of ..., it prevents me from doing ...
+      validations:
+          required: true
+
+    - type: textarea
+      id: steps-to-take
+      attributes:
+          label: How do you recreate this bug or crash?
+          description: Give us a list of steps in order to recreate the bug or crash.
+          placeholder: |
+              1. Do ...
+              2. Then ...
+              3. Do this ..., ... and then ...
+              4. Observe "the bug" or "the crash"
+      validations:
+          required: true
+
+    - type: textarea
+      id: system-info
+      attributes:
+          label: System Information
+          description: Tell us about your system and which installer build you used.
+          placeholder: |
+              - OS and version: (e.g. Windows 11 23H2, Ubuntu 24.04, macOS 14)
+              - Installer type: (GUI or CLI)
+              - Installer version:
+              - Discord branch: (Stable, PTB or Canary)
+      validations:
+          required: true
+
+    - type: textarea
+      id: screenshots-video
+      attributes:
+          label: Screenshot / Video
+          description: Attach a screenshot or a video showing the error happening in the installer. You can drag and drop the files here. If you are using the CLI build, you can also paste the terminal output between the "```".
+          placeholder: Drag and drop your screenshot or video here...
+      validations:
+          required: false
+
+    - type: checkboxes
+      id: agreement-check
+      attributes:
+          label: Request Agreement
+          description: Please confirm the following before submitting your report.
+          options:
+              - label: I've searched existing issues and this hasn't been reported before
+              - label: I downloaded the installer from an official source (equicord.org or the official GitHub releases), not via a third-party package
+              - label: I did not read any of this and checked every box out of convenience just to open the issue
+              - label: I did not run the installer as Administrator (Windows) and tried the CLI build if the GUI failed to open
+              - label: I understand that if any of the above conditions are not met, this issue will be deleted and I will be banned from creating future issues without further warning
+                required: true
+              - label: I am willing to submit a fix for this myself

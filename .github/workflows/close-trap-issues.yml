@@ -1,0 +1,39 @@
+name: Close issues that didn't read the template
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: | 
+            const body = context.payload.issue.body || "";
+            const trapped = /- \[x\] I did not read any of this/i.test(body);
+
+            if (!trapped) return;
+
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number: context.issue.number,
+              body: "This issue was automatically closed because you checked the box saying you didn't read the template. Please read it carefully, and if you still need help, join our Discord: https://equicord.org/discord"
+            });
+
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: context.issue.number,
+              labels: ["invalid"]
+            });
+
+            await github.rest.issues.update({
+              ...context.repo,
+              issue_number: context.issue.number,
+              state: "closed",
+              state_reason: "not_planned"
+            });
